@@ -33,27 +33,3 @@ output_subheadings = [subheading.text for subheading in subheadings]
 df = pd.DataFrame({'title': output_titles, 'authors': output_authors, 'subheading': output_subheadings})
 df.to_csv('data/NYT_Tech.csv', index=False)
 
-
-
-#Web Scraping Coinbase with BeautifulSoup for the price of top 10 cryptocurrencies.
-#request the page
-page = requests.get('https://coinmarketcap.com/')
-page
-#Create a BeautifulSoup object
-soup = BeautifulSoup(page.text, 'html.parser')
-
-#Extract information from the page
-
-##Extract the top 10 cryptocurrencies
-cryptocurrencies = soup.find('table', class_='h7vnx2-2 juYUEZ cmc-table')
-df = pd.read_html(str(cryptocurrencies))[0]
-
-#Drop unwanted columns and rename the columns
-df = df.drop(['Unnamed: 0'], axis=1)
-df = df.drop(['Unnamed: 11'], axis=1)
-df = df.drop(['Last 7 Days'], axis=1)
-df = df.rename(columns={'Name': 'name', 'Price': 'price', 'Market Cap': 'market_cap', 'Circulating Supply': 'circulating_supply', 'Volume (24h)': 'volume_24h', 'Change (24h)': 'change_24h'})
-
-df
-
-df.to_csv('data/cryptocurrenies.csv', index=True)
