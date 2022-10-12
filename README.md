@@ -14,7 +14,7 @@
 ### Extracting the data
 - CoinMarketCap
     - This site had a table with data for the top cryptocurrencies. The data was extracted from the table using the BeautifulSoup find function. The tag class was inspected using a web browser. It was then stored in a DataFrame using the pandas read_html function. 
-         -Tag & Class Used: `table, class = 'h7vnx2-2 juYUEZ cmc-table'`
+         - Tag & Class Used: `table, class = 'h7vnx2-2 juYUEZ cmc-table'`
     - After the data was extracted, the DataFrame was filtered to only include the columns that were needed, the rows that were not needed were dropped, and only the top 10 cryptocurrencies were kept. It was also neccessary to clean up some of the data in the DataFrame to make it usable. (e.g. removing the redunadant 6.18B from the Market Cap column, or removing position and symbol from the name column)
     - The DataFrame was then exported to a CSV file using the to_csv function in pandas.
 
